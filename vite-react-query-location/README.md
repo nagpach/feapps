@@ -1,18 +1,37 @@
-# Tech Stack 
-
-### 1. Vite 2.9.9
-### 2. TypeScript
-### 3. React 18
-### 4. Tailwind 3.0.x
-### 5. Vercel 
-### 6. React Query 3.38.x
-### 7. React Location 
-### 8. GraphQL-CodeGen
+# vite-react-query-location
+Simple, convenient  vite's react template for React Query with GraphQL
 
 
-# Istall
-'''
-yarn install
-yarn generate
-yarn dev
-'''
+## Usage
+
+-  Clone this repo, like `git clone https://github.com/nagpach/feapps.git`. In addition, you can click "Use this template" to copy this template to your repositories
+
+- Install all dependencies `pnpm install`
+
+- Build under development mode `pnpm generate`
+
+- Build under development mode `pnpm dev`
+
+- Build under production mode `pnpm build`
+
+- Preview web page `pnpm preview`
+
+- Unit test or integration test `pnpm test`
+
+- Other scripts can be viewed in package.json
+
+## ✨Packages
+
+> typescript is used in the project, and all dependencies that need to install @types/xxx have been added
+
+✅ React 18
+✅ Jest
+✅ TypeScript
+✅ Testing Library
+✅ react-query
+✅ react-location
+✅ react-error-boundary
+✅ Tailwind
+✅ PostCSS
+✅ GraphQL-CodeGen
+✅ Vercel 
