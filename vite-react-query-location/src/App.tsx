@@ -9,10 +9,11 @@ import {
   ReactLocation,
   Route,
   Router,
-  useMatch,
-} from "react-location";
+} from "@tanstack/react-location";
 import { ReactQueryDevtools } from 'react-query/devtools';
 import LaunchesComponent from './components/LaunchesComponent';
+import HomeComponent from './components/Home';
+import { ReactLocationDevtools } from '@tanstack/react-location-devtools'
 
 //const queryClient = new QueryClient()
 
@@ -44,7 +45,7 @@ function App() {
   const routes: Route<LocationGenerics>[] = [
     {
       path: "/",
-      element: 'This is Home',
+      element: <HomeComponent />,
     },
     {
       path: "/launches",
@@ -62,7 +63,7 @@ function App() {
   return (
   <QueryClientProvider client={queryClient}>
     <Router routes={routes} location={location} defaultLinkPreloadMaxAge={1000}>
-      <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+      <div>
         <h2>SpaceX Launches</h2>
         <ul>
           <li><Link to="/">Home</Link></li>
@@ -70,7 +71,9 @@ function App() {
         </ul>
         <Outlet />
       </div>
+      
     </Router>
+    
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
   )

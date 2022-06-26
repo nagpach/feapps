@@ -1,13 +1,11 @@
 
-import { QueryClient, QueryClientProvider } from 'react-query'
 import { LaunchesPastResult } from '../../generated'
-import { getSdk } from '../../generated/routes'
-import { GraphQLClient } from 'graphql-request'
+import { tw } from 'twind'
 
 import {
     MakeGenerics,
     useMatch,
-  } from "react-location";
+  } from "@tanstack/react-location";
 
 type LocationGenerics = MakeGenerics<{
     LoaderData: {
@@ -21,7 +19,8 @@ const LaunchesComponent = () => {
     } = useMatch<LocationGenerics>();
 
   return (
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: "100%", height: '100vh'}}>
+    <main className={tw`h-[calc(100vh-100px)] bg-purple-400 flex items-center justify-center`}>
+    <div>
       <div>
         {data?.data?.map(launch => (
           <div key={launch?.mission_name}>
@@ -33,6 +32,8 @@ const LaunchesComponent = () => {
         ))}
       </div>
     </div>
+    </main>
+
   )
 }
 

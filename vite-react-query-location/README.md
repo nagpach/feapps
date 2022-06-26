@@ -40,6 +40,8 @@ Simple, convenient  vite's react template for React Query with GraphQL
 
 ✅ Tailwind
 
+✅ twind
+
 ✅ PostCSS
 
 ✅ GraphQL-CodeGen
