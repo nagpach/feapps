@@ -12,13 +12,15 @@
   "dependencies": {
     "@hookform/resolvers": "^2.9.1",
     "graphql": "^16.5.0",
+    "graphql-tag": "^2.12.3",
     "graphql-request": "^4.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.32.1",
     "react-query": "^3.39.1",
     "react-error-boundary": "^3.1.4",
-    "react-location": "^3.2.15"
+    "@tanstack/react-location": "3.7.4",
+    "@tanstack/react-location-devtools": "3.4.4"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.3.0",
