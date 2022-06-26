@@ -25,13 +25,23 @@ Simple, convenient  vite's react template for React Query with GraphQL
 > typescript is used in the project, and all dependencies that need to install @types/xxx have been added
 
 ✅ React 18
+
 ✅ Jest
+
 ✅ TypeScript
+
 ✅ Testing Library
+
 ✅ react-query
+
 ✅ react-location
+
 ✅ react-error-boundary
+
 ✅ Tailwind
+
 ✅ PostCSS
+
 ✅ GraphQL-CodeGen
+
 ✅ Vercel 
