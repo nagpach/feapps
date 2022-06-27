@@ -31,8 +31,6 @@ const location = new ReactLocation<LocationGenerics>();
 const client = new GraphQLClient('https://api.spacex.land/graphql')
 
 
-
-
 type LocationGenerics = MakeGenerics<{
   LoaderData: {
     launchesPast: LaunchesPastResult

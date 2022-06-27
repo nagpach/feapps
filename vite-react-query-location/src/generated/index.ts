@@ -1,6 +1,7 @@
 import { GraphQLClient } from 'graphql-request';
 import { RequestInit } from 'graphql-request/dist/types.dom';
 import { useQuery, UseQueryOptions } from 'react-query';
+import { graphql, ResponseResolver, GraphQLRequest, GraphQLContext } from 'msw'
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -1355,3 +1356,19 @@ export const useLaunchesPastQuery = <
       fetcher<LaunchesPastQuery, LaunchesPastQueryVariables>(client, LaunchesPastDocument, variables, headers),
       options
     );
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockLaunchesPastQuery((req, res, ctx) => {
+ *   return res(
+ *     ctx.data({ launchesPast })
+ *   )
+ * })
+ */
+export const mockLaunchesPastQuery = (resolver: ResponseResolver<GraphQLRequest<LaunchesPastQueryVariables>, GraphQLContext<LaunchesPastQuery>, any>) =>
+  graphql.query<LaunchesPastQuery, LaunchesPastQueryVariables>(
+    'LaunchesPast',
+    resolver
+  )
