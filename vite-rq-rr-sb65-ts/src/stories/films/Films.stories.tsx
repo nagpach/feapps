@@ -2,7 +2,7 @@ import React from 'react';
 import { MemoryRouter as Router, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { RequestHandler, rest } from 'msw';
-import Films from './Films';
+import Films from '../../components/Films';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 const activeRoute = '/films';
@@ -45,9 +45,7 @@ const MockTemplate = () => (
   </QueryClientProvider>
 );
 
-export const MockedSuccess = MockTemplate.bind({});
-
-
+export const MockedSuccess =  MockTemplate.bind({});
 MockedSuccess.parameters = {
   msw: {
     handlers: [
@@ -76,7 +74,9 @@ MockedSuccess.parameters = {
 };
 
 
-export const MockedError = MockTemplate.bind({});
+
+
+export const MockedError =  MockTemplate.bind({});
 MockedError.parameters = {
   msw: {
     handlers: [

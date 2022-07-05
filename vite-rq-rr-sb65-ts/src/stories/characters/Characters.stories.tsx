@@ -1,23 +1,27 @@
+
 import React from 'react';
-import { MemoryRouter as Router, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { rest } from 'msw';
-import Characters from './Characters';
+import Characters from '../../components/Characters';
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {
   title: 'RQ/Page Stories/Characters',
   component: Characters,
-};
+  decorators: [withRouter],
+  parameters: {
+    reactRouter: {
+      routePath: '/characters',
+      routeParams: {  },
+    },
+  }
+}
 
 const defaultQueryClient = new QueryClient();
 
 export const DefaultBehavior = () => (
   <QueryClientProvider client={defaultQueryClient}>
-    <Router initialEntries={['/characters']}>
-      <Route path="/characters">
         <Characters />
-      </Route>
-    </Router>
   </QueryClientProvider>
 );
 
@@ -31,15 +35,11 @@ const mockedQueryClient = new QueryClient({
 
 const MockTemplate = () => (
   <QueryClientProvider client={mockedQueryClient}>
-    <Router initialEntries={['/characters']}>
-      <Route path="/characters">
         <Characters />
-      </Route>
-    </Router>
   </QueryClientProvider>
 );
 
-export const MockedSuccess = MockTemplate.bind({});
+export const MockedSuccess =  MockTemplate.bind({});
 MockedSuccess.parameters = {
   msw: {
     handlers: [
@@ -63,7 +63,7 @@ MockedSuccess.parameters = {
   },
 };
 
-export const MockedError = MockTemplate.bind({});
+export const MockedError =  MockTemplate.bind({});
 MockedError.parameters = {
   msw: {
     handlers: [

@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "@mdx-js/mdx": "1.6.22",
+    "axios": "^0.27.2",
     "graphql": "^16.5.0",
-    "msw-storybook-addon": "^1.6.3",
+    "graphql-request": "^4.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-query": "^3.39.1",
@@ -39,6 +40,7 @@
     "babel-loader": "^8.2.5",
     "msw": "^0.43.0",
     "postcss": "^8.4.14",
+    "msw-storybook-addon": "^1.6.3",
     "storybook-addon-react-router-v6": "^0.1.10",
     "tailwindcss": "^3.1.4",
     "typescript": "^4.6.3",

@@ -1,6 +1,6 @@
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import CounterPage from './CounterPage';
+import CounterPage from '../pages/CounterPage';
 
 const activeRoute = '/counter';
 const notActiveRoute = '/';

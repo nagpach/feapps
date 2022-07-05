@@ -18,7 +18,7 @@ interface HeaderProps {
 export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps) => (
   <header>
     <div className="wrapper">
-      <div>
+      <div className="flex gap-x-2">
         <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
           <g fill="none" fillRule="evenodd">
             <path
@@ -36,6 +36,14 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
           </g>
         </svg>
         <Link to="/">Acme</Link>
+        <div className="flex gap-x-2 mx-2">
+          <div> <Link to="/posts">Posts</Link></div>
+          <div><Link to="/page">Page</Link></div>
+          <div><Link to="/counter">Counter</Link></div>
+          <div><Link to="/films">Films</Link></div>
+          <div><Link to="/characters">Characters</Link></div>
+          
+        </div>
       </div>
       <div>
         {user ? (

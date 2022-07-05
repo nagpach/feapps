@@ -1,17 +1,16 @@
 import React from 'react';
 import { MemoryRouter as Router, Route } from 'react-router-dom';
-import Film from './Film';
+import Film from '../../components/Film';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { RequestHandler, rest } from 'msw';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 type MswParameter = {
     handlers: RequestHandler[] | Record<string, RequestHandler | RequestHandler[]>
-  }
+}
 
-
-const activeRoute = '/film/1';
-const notActiveRoute = '/';
+//const activeRoute = '/film/1';
+//const notActiveRoute = '/';
 
 export default {
   title: 'RQ/Page Stories/Film',
@@ -52,7 +51,7 @@ const MockTemplate = () => (
   </QueryClientProvider>
 );
 
-export const MockedSuccess = MockTemplate.bind({});
+export const MockedSuccess =  MockTemplate.bind({});
 MockedSuccess.parameters = {
   msw: {
     handlers: [
@@ -84,7 +83,7 @@ MockedSuccess.parameters = {
   },
 };
 
-export const MockedFilmApiError = MockTemplate.bind({});
+export const MockedFilmApiError =  MockTemplate.bind({});
 MockedFilmApiError.parameters = {
   msw: {
     handlers: [
@@ -98,7 +97,7 @@ MockedFilmApiError.parameters = {
   },
 };
 
-export const MockedCharacterApiError = MockTemplate.bind({});
+export const MockedCharacterApiError =  MockTemplate.bind({});
 MockedCharacterApiError.parameters = {
   msw: {
     handlers: [

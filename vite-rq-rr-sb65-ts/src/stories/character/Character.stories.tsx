@@ -1,14 +1,34 @@
 import React from 'react';
-import { MemoryRouter as Router, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { rest } from 'msw';
-import Character from './Character';
+import Character from '../../components/Character';
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {
   title: 'RQ/Page Stories/Character',
   component: Character,
+  decorators: [withRouter],
   parameters: {
-    msw: {
+    reactRouter: {
+      routePath: '/characters/:characterId',
+      routeParams: { characterId: '1' },
+    },
+  }
+};
+
+
+
+const defaultQueryClient = new QueryClient();
+
+export const DefaultBehavior = () => (
+  <QueryClientProvider client={defaultQueryClient}>
+        <Character />
+  </QueryClientProvider>
+);
+
+
+DefaultBehavior.parameters = {
+   msw: {
       handlers: {
         common: [
           rest.get('https://swapi.dev/api/people/1', (req, res, ctx) => {
@@ -44,26 +64,6 @@ export default {
         ]
       }
     }
-  }
-};
-
-const defaultQueryClient = new QueryClient();
-
-export const DefaultBehavior = () => (
-  <QueryClientProvider client={defaultQueryClient}>
-    <Router initialEntries={['/characters/1']}>
-      <Route path="/characters/:characterId">
-        <Character />
-      </Route>
-    </Router>
-  </QueryClientProvider>
-);
-DefaultBehavior.parameters = {
-  msw: {
-    handlers: {
-      common: null
-    }
-  }
 }
 
 const mockedQueryClient = new QueryClient({
@@ -76,15 +76,11 @@ const mockedQueryClient = new QueryClient({
 
 const MockTemplate = () => (
   <QueryClientProvider client={mockedQueryClient}>
-    <Router initialEntries={['/characters/1']}>
-      <Route path="/characters/:characterId">
         <Character />
-      </Route>
-    </Router>
   </QueryClientProvider>
 );
 
-export const MockedSuccess = MockTemplate.bind({});
+export const MockedSuccess = () => MockTemplate.bind({});
 MockedSuccess.parameters = {
   msw: {
     handlers: {
@@ -93,6 +89,13 @@ MockedSuccess.parameters = {
           return res(
             ctx.json({
               name: '(Mocked) Tatooine',
+                birth_year: '19BBY',
+                eye_color: 'blue',
+                hair_color: 'blond',
+                height: '172',
+                mass: '77',
+                homeworld: 'http://swapi.dev/api/planets/1/',
+                films: ['http://swapi.dev/api/films/1/', 'http://swapi.dev/api/films/2/'],
             }),
           );
         }),
@@ -101,7 +104,7 @@ MockedSuccess.parameters = {
   },
 };
 
-export const MockedPlanetsApiError = MockTemplate.bind({});
+export const MockedPlanetsApiError = () => MockTemplate.bind({});
 MockedPlanetsApiError.parameters = {
   msw: {
     handlers: {
