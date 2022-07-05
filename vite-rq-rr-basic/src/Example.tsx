@@ -12,7 +12,7 @@ export function QueryExample() {
 
     return (
         <div>
-            <h1>name: {data?.name}</h1>
+            {/*<h1>name: {data?.name}</h1>*/}
 
             <div className="shadow-md m-2 p-2 bottom-2 bg-blue-200 w-[50%]">
             <pre id="json">{JSON.stringify(data,undefined, 2)}</pre>

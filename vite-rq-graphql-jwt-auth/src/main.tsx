@@ -42,7 +42,7 @@ root.render(
             <App />
           </AuthMiddleware>
         </StateContextProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/*<ReactQueryDevtools initialIsOpen={false} />*/}
       </Router>
     </QueryClientProvider>
   </React.StrictMode>

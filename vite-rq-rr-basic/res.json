@@ -1,0 +1,49 @@
+{
+    "data": {
+        "contentItems": [
+            {
+                "id": "e1e8e3be8feeebe9a269b22083d20231",
+                "description": "This lesson will introduce you to Python, a general-purpose, object-oriented interpreted language you can use for countless standalone projects or scripting applications.",
+                "is_deprecated": false,
+                "is_free": null,
+                "published": true,
+                "slug": "python-syntax",
+                "title": "Python Syntax",
+                "time": 103,
+                "type": "lesson",
+                "published_exercise_ids": [
+                    "2979793b4375643a23b7359c5844c472",
+                    "610d2e4c821f849abdf914b0d231e83f",
+                    "c82de104ab1ed65d0a8dacbe7b1d2a4f",
+                    "b9701aa3200690d959b4c6d8ab853599",
+                    "e6976f61f5ca0b0b31072d73a2dc2117",
+                    "fe8901d11d3b76ecb9b43c79467b2d67",
+                    "447cc021128e7941c3f6a380ea811497",
+                    "53c95623cb2f4b3e6177dddb8238a62b",
+                    "18adc26d22aa369e5767856e4fd6512f",
+                    "a6eacd51821d639b297e18588469f26a",
+                    "5dfbd7ddef4dc45071fb9a4e373c1c37",
+                    "8bced4dffcab2fbc4ef59aee980315a4",
+                    "ba6df750aa648f97a20182d8a2c1f92a",
+                    "1f92539f7fc54a5e6d4a8f807fbf43d0"
+                ],
+                "exercise_ids": [
+                    "2979793b4375643a23b7359c5844c472",
+                    "610d2e4c821f849abdf914b0d231e83f",
+                    "c82de104ab1ed65d0a8dacbe7b1d2a4f",
+                    "b9701aa3200690d959b4c6d8ab853599",
+                    "e6976f61f5ca0b0b31072d73a2dc2117",
+                    "fe8901d11d3b76ecb9b43c79467b2d67",
+                    "447cc021128e7941c3f6a380ea811497",
+                    "53c95623cb2f4b3e6177dddb8238a62b",
+                    "18adc26d22aa369e5767856e4fd6512f",
+                    "a6eacd51821d639b297e18588469f26a",
+                    "5dfbd7ddef4dc45071fb9a4e373c1c37",
+                    "8bced4dffcab2fbc4ef59aee980315a4",
+                    "ba6df750aa648f97a20182d8a2c1f92a",
+                    "1f92539f7fc54a5e6d4a8f807fbf43d0"
+                ]
+            }
+        ]
+    }
+}

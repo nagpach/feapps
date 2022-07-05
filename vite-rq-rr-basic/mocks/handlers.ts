@@ -1,9 +1,6 @@
 import { rest } from 'msw'
 
 export const handlers = [
-
- 
-  
   rest.get('https://api.github.com/repos/tannerlinsley/react-query', (req, res, ctx) => {
     const data = {
       "id": 207645083,

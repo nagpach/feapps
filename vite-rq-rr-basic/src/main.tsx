@@ -4,7 +4,9 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 
 import App from './App'
-import AuthContext from './contexts/auth'
+import { StateContextProvider } from './contexts/userContext'
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 
@@ -16,22 +18,22 @@ if (process.env.NODE_ENV === 'development') {
     .then(() => {
       root.render(
         <React.StrictMode>
-          <AuthContext.Provider value={{ username: '' }}>
+          <StateContextProvider>
             <BrowserRouter>
               <App />
             </BrowserRouter>
-          </AuthContext.Provider>
+          </StateContextProvider>
         </React.StrictMode>
       )
     })
 } else {
   root.render(
     <React.StrictMode>
-      <AuthContext.Provider value={{ username: '' }}>
+      <StateContextProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </AuthContext.Provider>
+      </StateContextProvider>
     </React.StrictMode>
   )
 }

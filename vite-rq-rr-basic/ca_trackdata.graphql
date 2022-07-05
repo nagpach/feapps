@@ -1,0 +1,220 @@
+query trackData($id: [ID!], $slug: [String!], $relations: Boolean!) {
+  tracks(id: $id, slug: $slug, includeUnreleased: true) {
+    id
+    title
+    slug
+    created_at: createdAt
+    last_modified_at: updatedAt
+    published
+    completion_message: completionMessage
+    short_description: shortDescription
+    long_description: longDescription
+    alert_description: alertDescription
+    alert_type: alertType
+    alert_cta: alertCta
+    alert_cta_destination: alertCtaDestination
+    partner_logo: partnerLogo
+    partner_url: partnerUrl
+    partner_tagline: partnerTagline
+    lesson_count: contentItemCount(contentItemType: Lesson)
+    category_ids: categoryIds
+    difficulty
+    module_ids: contentModuleIds
+
+    modules: contentModules @include(if: $relations) {
+      id
+      title
+      slug
+      created_at: createdAt
+      last_modified_at: updatedAt
+      published
+      short_description: shortDescription
+      long_description: longDescription
+      content_item_ids: contentItemIds
+    }
+
+    content_items: contentItems @include(if: $relations) {
+      ...on ContentItemInterface {
+        id
+        description
+        is_deprecated: isDeprecated
+        is_free: isFree
+        published
+        slug
+        title
+        time
+        type
+      }
+    
+      ...on Article {
+        body 
+      }
+
+      ...on Informational {
+        body 
+      }
+    
+    	...on Lesson {
+        published_exercise_ids: publishedExerciseIds
+        exercise_ids: exerciseIds
+      }
+
+      ...on KanbanProject {
+        kanban_project_information: kanbanProjectInformation {
+          long_overview: longOverview
+          resources
+          setup_instructions: setupInstructions
+          short_overview: shortOverview
+          tasks {
+            description
+            hint
+            title
+          }
+        }
+      }
+
+      ...on ExternalResource {
+        body
+        resource_type: resourceType
+        source_name: sourceName
+        resource_url: resourceUrl
+        image {
+          alt
+          url
+        }
+      }
+    
+      ...on Project {
+        standalone
+        project_information: projectInformation {
+          ein_config: einConfig
+          download_path: downloadPath
+          objective
+          preview_url: previewUrl
+          thumbnail_url: thumbnailUrl
+          video_url: videoUrl
+
+          workspace {
+            id
+            slug
+            type: backendType
+          }
+
+          self_assessments: taskGroups {
+            heading
+            tasks {
+              hint
+              task_key: taskKey
+              text
+            }
+          }
+
+          components: layoutComponents {
+            ...sharedLayoutComponentFields
+
+            ... on WebBrowser {
+              display_url: displayUrl
+            }
+
+            ...on Narrative {
+              content
+              instructions
+            }
+
+            ...on LayoutImage {
+              image_url: imageUrl
+              alt_text: altText
+            }
+
+            ...on PersistentCodeEditor {
+              files
+              navigator_disabled: navigatorDisabled
+              no_run_button:noRunButton
+            }
+
+            ...on ReadOnlyCodeEditor {
+              file_path: filePath
+            }
+
+            ...on ExpoCodeEditor {
+              files
+            }
+
+            ...on Terminal {
+              shell
+              prevent_checkpoint_run: preventCheckpointRun
+              fake_responses: fakeResponses {
+                id
+                delay
+                match_pattern: matchPattern
+                output_content: outputContent
+                output_type: outputType
+              }
+            }
+
+            ...on Video {
+              video_urls: videoUrls
+              autoplay
+              mute
+              loop
+              show_controls: showControls
+            }
+          }
+        }
+      }
+
+      ...on Quiz {
+        assessment_ids: assessmentIds
+        assessments {
+          ...on AssessmentInterface {
+            id
+            type
+            prompt
+          }
+
+          ...on FillInCode {
+            snippet_template: snippetTemplate
+            code_language: codeLanguage
+            decoy_answers: decoyAnswers
+            answers {
+              id
+              hint
+              text
+            }
+          }
+
+          ... on MultipleChoice {
+            correct_answer: correctAnswer
+            answers {
+              text
+              reason
+            }
+            image {
+              url
+              alt
+            }
+            latex_block: latexBlock {
+              text
+            }
+            code_snippet: codeSnippet {
+              language
+              text
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment sharedLayoutComponentFields on LayoutComponentInterface {
+  id
+  type
+}
+
+
+
+{
+  "slug": "learn-python",
+  "relations": true
+}

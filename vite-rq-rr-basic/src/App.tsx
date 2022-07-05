@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { Routes, Route, Outlet, Link, useParams } from 'react-router-dom'
+import { Routes, Route, Outlet, Link, useParams, useLocation, Location } from 'react-router-dom'
+import { useCookies } from 'react-cookie';
+import { useStateContext } from './contexts/userContext'
 
-//import AuthContext from './contexts/auth'
 
-import logo from './logo.svg'
 import './index.css'
 import './App.css'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/types/devtools'
 import { QueryExample } from './Example'
-
-type DocsList = Array<{ name: string; url: string }>
-
-/*
-const App = () => {
-  return (<AppPage />)
-}
-*/
+import AppPage from './components/AppPage'
+import Layout from './components/Layout'
+import LoginPage from './components/LoginPage'
+import NotFoundPage from './components/NotFoundPage'
 
 const queryClient = new QueryClient()
 
 
 const App = () => {
+
+  const [cookies] = useCookies();
+  const [user, setUser] = useState(cookies.token ? {token: cookies.token} : null);
+
   return (
     <QueryClientProvider client={queryClient}>
     <Routes>
@@ -57,104 +57,18 @@ const App = () => {
   )
 }
 
-const AppPage = () => {
-  const [count, setCount] = useState(0)
-  const [docsList, setDocsList] = useState<DocsList>([])
-
-  useEffect(() => {
-    fetch('./docs_list')
-      .then((res) => res.json())
-      .then((data) => {
-        setDocsList(data)
-      })
-      .catch()
-  }, [])
-
-  return (
-    <main className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button
-            type="button"
-            className="h-26 w-52 px-4 py-3 my-4 border border-white border-solid rounded"
-            onClick={() => setCount(count + 1)}
-          >
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p></p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-          {docsList.length
-            ? docsList.map((v, i) => {
-                return (
-                  <span key={i}>
-                    {' | '}
-                    <a
-                      className="App-link"
-                      href={v.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {v.name}
-                    </a>
-                  </span>
-                )
-              })
-            : false}
-        </p>
-      </header>
-    </main>
-  )
-}
-
 const ProtectedPage = ({ children }: { children: JSX.Element }) => {
-  return (
-    <>
-      <h1>Protected Page</h1>
-      <h1>{children}</h1>
-    </>
-  )
-}
+  const { state } = useStateContext();
+  const location:Location = useLocation();
 
-const Layout = () => {
+
+  //let from = location.state?.from?.pathname || "/";
+
   return (
-    <div className="h-screen">
-      <div>
-        <div className="flex gap-x-4 bg-blue-200">
-          <Link to="/">Home</Link>
-          <Link to="/invoices">Invoices</Link>
-          <Link to="/example">Example</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contactus">Contacts</Link>
-          <Link to="/login">Login</Link>
+        <div><h1>Protected Page. You are from  </h1>
+        <div className="text-6xl"><span role="img" aria-label="ice cream">🍦</span></div>
+        <h1>{children}</h1>
         </div>
-      </div>
-      <div className="h-screen bg-yellow-200">
-        <Outlet />
-      </div>
-    </div>
   )
 }
 
@@ -193,56 +107,6 @@ const InvoiceHomePage = () => {
   return (
     <div className="m-2 p-2">
       <h1 className="text-3xl font-bold underline">Invoice for {invoiceId}</h1>
-    </div>
-  )
-}
-
-const NotFoundPage = () => {
-  return (
-    <div className="m-2 p-2">
-      <h1 className="text-3xl font-bold underline">NotFound</h1>
-    </div>
-  )
-}
-
-const LoginPage = () => {
-  //const authContext = useContext(AuthContext);
-  const [userName, setUserName] = React.useState('')
-  /*
-  const handleSubmit = () => {
-    //authContext?.username =  { username: userName }
-  }*/
-
-  return (
-    <div className="m-2 p-2">
-      <h1 className="text-3xl font-bold underline">Login Page</h1>
-      <div className="w-96 ">
-        <form className="flex flex-col m-2 p-2 gap-2 bg-red-200">
-          <input
-            type="text"
-            value={userName}
-            name="username"
-            onChange={(e) => setUserName(e.target.value)}
-          ></input>
-          <input type="password" name="password"></input>
-          <div className="flex m-2 p-2 gap-2 w-full">
-            <div className="flex m-2 p-2 gap-2">
-              <input
-                className="bg-blue-200 text-2xl m-4 p-4"
-                type="submit"
-                name="submit"
-              ></input>
-            </div>
-            <div className="flex m-2 p-2 gap-2 w-full">
-              <input
-                className="bg-blue-200 text-2xl m-4 p-4"
-                type="reset"
-                name="reset"
-              ></input>
-            </div>
-          </div>
-        </form>
-      </div>
     </div>
   )
 }
