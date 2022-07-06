@@ -19,7 +19,7 @@ export default function Character() {
     return null;
   }
   return (
-    <div>
+    <div className="m-2 p-2 font-semibold">
       <h2>{data.name}</h2>
       <table className="rr-rq-table" aria-label="simple table">
         <thead>

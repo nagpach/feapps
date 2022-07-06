@@ -12,8 +12,8 @@ function Posts({ setPostId } : { setPostId: Dispatch<React.SetStateAction<number
 
   return (
     <div className="m-2 p-4">
-      <h1>Posts</h1>
-      <div className="m-2 p-4">
+      <h1 className="m-2 p-4 font-extrabold">Posts</h1>
+      <div className="m-2 p-4 h-[600px] w-[50%] overflow-scroll border-2">
         {status === "loading" ? (
           "Loading..."
         ) : status === "error" ? (

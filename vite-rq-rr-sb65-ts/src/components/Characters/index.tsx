@@ -12,7 +12,7 @@ export default function Characters() {
   if (status === 'error') return <p>Error :(</p>;
 
   return (
-    <div>
+    <div className="m-2 p-2 font-bold">
       <h2>Characters</h2>
       {data.results.map((person:any) => {
         const personUrlParts = person.url.split('/').filter(Boolean);

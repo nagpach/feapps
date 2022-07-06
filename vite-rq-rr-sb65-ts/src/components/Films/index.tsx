@@ -14,7 +14,7 @@ export default function Films() {
   }
 
   return (
-    <div>
+    <div className="m-2 p-2 font-extrabold">
       <h2>Films</h2>
       {data.results.map((film:any) => {
         const filmUrlParts = film.url.split('/').filter(Boolean);

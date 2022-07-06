@@ -14,11 +14,11 @@ export default function Film() {
   if (status === 'error') return <p>Error :(</p>;
 
   return (
-    <div>
-      <h2>{data.title}</h2>
-      <p>{data.opening_crawl}</p>
+    <div className="m-2 p-2 font-extrabold">
+      <h2 className="m-2 p-2">{data.title}</h2>
+      <p className="m-2 p-2">{data.opening_crawl}</p>
       <br />
-      <h3>Characters</h3>
+      <h3 className="m-2 p-2">Characters</h3>
       {data.characters.map((character:any) => {
         const characterUrlParts = character.split('/').filter(Boolean);
         const characterId = characterUrlParts[characterUrlParts.length - 1];
@@ -41,7 +41,7 @@ function Character(props:any) {
   return (
     <article key={id}>
       <Link to={`/characters/${id}`}>
-        <h4>{data.name}</h4>
+        <div className="m-1">{data.name}</div>
       </Link>
     </article>
   );

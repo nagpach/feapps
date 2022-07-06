@@ -35,7 +35,7 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   //const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
-  const mode = primary ? 'bg-blue-200 m-2 p-2  rounded-md text-block'  : 'bg-green-200 m-2 p-2 text-2xl  rounded-md text-block';
+  const mode = primary ? 'bg-blue-400 m-2 p-2  font-bold rounded-md text-gray'  : 'bg-green-400 m-2 p-2 text-2xl font-bold rounded-md text-block';
   let sizeClass;
   if (size == 'small' ) {
     sizeClass =  'text-xl';

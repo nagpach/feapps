@@ -17,7 +17,7 @@ const PostsPage = ()  => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <p>
+      <p className="m-2 p-2 text-red-400">
         As you visit the posts below, you will notice them in a loading state
         the first time you load them. However, after you return to this list and
         click on any posts you have already visited again, you will see them
